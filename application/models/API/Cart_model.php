@@ -27,7 +27,7 @@ class Cart_model extends CI_Model{
     public function addToCart($user_id, $product_id, $product_qty)
     {
 
-        $isset_data = $this->db->get_where($this->table, array('prod_id'=>$product_id,'id_user'=>$user_id));
+        $isset_data = $this->db->get_where($this->_table, array('prod_id'=>$product_id,'id_user'=>$user_id));
         if($isset_data->num_rows() > 0){
             $data = array(
                 'prod_id'   => $product_id,
