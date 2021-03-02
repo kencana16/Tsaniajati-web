@@ -32,7 +32,7 @@ class Cart_model extends CI_Model{
             $data = array(
                 'prod_id'   => $product_id,
                 'prod_name' => $this->db->select('prod_name')->from('products')->where('prod_id', $product_id)->get()->row()->prod_name,
-                'qty'       => $product_qty + $isset_data->row->qty,
+                'qty'       => $product_qty + $isset_data->row()->qty,
                 'price'     => $this->db->select('prod_price')->from('products')->where('prod_id', $product_id)->get()->row()->prod_price,
                 'id_user'   => $user_id 
             );
