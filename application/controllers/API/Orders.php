@@ -8,8 +8,8 @@ class Orders extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('api/cart_model', 'cart_model');
-        $this->load->model('api/order_model', 'order_model');
+        $this->load->model('API/cart_model', 'cart_model');
+        $this->load->model('API/order_model', 'order_model');
     }
 
     public function cart_get()

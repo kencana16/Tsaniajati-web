@@ -5,30 +5,30 @@ class Beranda extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();		
-		$this->load->model('M_Beranda');
+		$this->load->model('beranda/m_beranda');
 		$this->load->helper('url');
 	}
 	public function index(){
 		$data['judul'] = "TSANIAJATI";
 		$data['users']= $this->db->get_where('users', ['username' =>
 		$this->session->userdata('username')])->row_array();
-		$this->load->model('cart/M_Cart');
-		$data['cart']= $this->M_Cart->get_data();
-		$data['sum_jumlah']		= $this->M_Cart->jumlah_cart();
-		$data['products'] 		= $this->M_Beranda->tampil_data_limit(4,0);
-		$data['menukopi'] 		= $this->M_Beranda->data_menu_kopi();
-		$data['tidakkopi'] 		= $this->M_Beranda->data_tidak_kopi();
-		$data['category'] 		= $this->M_Beranda->kategori();
+		$this->load->model('cart/m_cart');
+		$data['cart']= $this->m_cart->get_data();
+		$data['sum_jumlah']		= $this->m_cart->jumlah_cart();
+		$data['products'] 		= $this->m_beranda->tampil_data_limit(4,0);
+		$data['menukopi'] 		= $this->m_beranda->data_menu_kopi();
+		$data['tidakkopi'] 		= $this->m_beranda->data_tidak_kopi();
+		$data['category'] 		= $this->m_beranda->kategori();
 		
-		$this->load->model('category/M_Cat');
-		$data['category'] = $this->M_Cat->tampil_data();
+		$this->load->model('category/m_cat');
+		$data['category'] = $this->m_cat->tampil_data();
 		$this->load->view('template/user_header', $data);
 		$this->load->view('account/beranda',$data);
 		$this->load->view('template/user_footer', $data);
 	}
 
 	function fetch(){
-		echo $this->M_Beranda->fetch_data($this->uri->segment(3));
+		echo $this->m_beranda->fetch_data($this->uri->segment(3));
 	}
  
     function search(){
@@ -47,8 +47,8 @@ class Beranda extends CI_Controller {
 			$config['total_rows']	= $this->db->count_all_results();
 			$data['total_rows'] 	= $config['total_rows'];
 			$data['start'] = $this->uri->segment(3);
-			$data['products'] = $this->M_Beranda->search_data($title, $data['start']);
-			$data['category'] = $this->M_Beranda->kategori();
+			$data['products'] = $this->m_beranda->search_data($title, $data['start']);
+			$data['category'] = $this->m_beranda->kategori();
 			$this->load->view('template/user_header', $data);
 			$this->load->view('produk/produkv',$data);
 			$this->load->view('template/user_footer', $data);
@@ -107,7 +107,7 @@ class Beranda extends CI_Controller {
 		$this->load->model('cart/M_Cart');
 		$data['cart']= $this->M_Cart->get_data();
 		$data['sum_jumlah']= $this->M_Cart->jumlah_cart();
-		$data['dprod'] = $this->M_Beranda->detail_data($id);
+		$data['dprod'] = $this->m_beranda->detail_data($id);
 		$data['products'] = $id;
 		$this->load->view('template/user_header', $data);
 		$this->load->view('account/detailv',$data);
@@ -121,7 +121,7 @@ class Beranda extends CI_Controller {
 		$this->load->model('cart/M_Cart');
 		$data['cart']= $this->M_Cart->get_data();
 		$data['sum_jumlah']= $this->M_Cart->jumlah_cart();
-		$data['preorder'] = $this->M_Beranda->detail_data($id);
+		$data['preorder'] = $this->m_beranda->detail_data($id);
 		$this->cek_login->user();
 		if ($this->cek_login->user() == TRUE ) {
             $this->load->view('login');

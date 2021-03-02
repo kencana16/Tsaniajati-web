@@ -8,7 +8,7 @@ class Login extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('api/user_model', 'user_model');
+        $this->load->model('API/user_model', 'user_model');
     }
 
     public function index_post()

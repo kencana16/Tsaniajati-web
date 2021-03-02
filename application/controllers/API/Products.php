@@ -8,8 +8,8 @@ class Products extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('api/product_model', 'product_model');
-        $this->load->model('api/category_model', 'category_model');
+        $this->load->model('API/product_model', 'product_model');
+        $this->load->model('API/category_model', 'category_model');
     }
 
     public function index_get()

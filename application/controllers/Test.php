@@ -5,7 +5,7 @@ class Test extends CI_CONTROLLER{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('api/product_model', "p_model");
+        $this->load->model('API/product_model', "p_model");
     }
 
     public function index()
